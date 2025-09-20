@@ -1,0 +1,113 @@
+@startuml
+abstract class card.base.SpellCard {
+- boolean isBurstSpeed
++ boolean isBurstSpeed()
++ void setBurstSpeed(boolean)
++ {abstract}void castSpell(UnitCard)
++ String toString()
+}
+
+
+class card.type.DamageSpellCard {
+- int damage
++ int getDamage()
++ void setDamage(int)
++ void castSpell(UnitCard)
+}
+
+
+class card.type.BuffSpellCard {
+- int powerIncrease
++ int getPowerIncrease()
++ void setPowerIncrease(int)
++ void castSpell(UnitCard)
+}
+
+
+class card.type.VenomUnitCard {
++ int attackUnit(UnitCard)
++ int dead(Player)
+}
+
+abstract class card.base.Card {
+- String name
+- String flavorText
+- int bloodCost
++ {abstract}String toString()
++ String getName()
++ int getBloodCost()
++ String getFlavorText()
++ void setName(String)
++ void setFlavorText(String)
++ void setBloodCost(int)
++ boolean equals(UnitCard)
++ Object clone()
+}
+
+
+class card.type.LeaderUnitCard {
+- int buffPower
+- int buffHealth
++ int attackUnit(UnitCard)
++ void buffUnit(UnitCard[])
++ int getBuffPower()
++ void setBuffPower(int)
++ int getBuffHealth()
++ void setBuffHealth(int)
++ String toString()
+}
+
+
+class card.type.NormalUnitCard {
++ int attackUnit(UnitCard)
+}
+
+class card.type.DebuffUnitCard {
+- int debuffPower
++ int attackUnit(UnitCard)
++ int getDebuffPower()
++ void setDebuffPower(int)
+}
+
+
+abstract class card.base.UnitCard {
+~ int power
+~ int health
++ {abstract}int attackUnit(UnitCard)
++ void setPower(int)
++ void setHealth(int)
++ int attackPlayer(Player)
++ int getPower()
++ int getHealth()
++ String toString()
+}
+
+
+class deck.Deck {
+- String name
+- int deckSize
+- Card[] deckList
++ int insertCard(Card)
++ Card removeCard(int)
++ String toString()
++ String getName()
++ void setName(String)
++ int getDeckSize()
++ void setDeckSize(int)
++ Card[] getDeckList()
++ void setDeckList(Card[])
+}
+
+
+
+
+card.base.Card <|-- card.base.SpellCard
+card.base.SpellCard <|-- card.type.DamageSpellCard
+card.base.SpellCard <|-- card.type.BuffSpellCard
+card.base.UnitCard <|-- card.type.VenomUnitCard
+card.base.Cloneable <|.. card.base.Card
+card.base.UnitCard <|-- card.type.LeaderUnitCard
+card.base.UnitCard <|-- card.type.NormalUnitCard
+card.base.UnitCard <|-- card.type.DebuffUnitCard
+card.base.Card <|-- card.base.UnitCard
+@enduml
