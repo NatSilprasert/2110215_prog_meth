@@ -26,7 +26,7 @@ public class Main extends Application {
 
         GameLogic.getInstance().setControlPane(controlPane);
 
-        root.getChildren().addAll(mineSweeperPane,controlGridPane);
+        root.getChildren().addAll(mineSweeperPane, controlGridPane);
 
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -37,4 +37,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }
